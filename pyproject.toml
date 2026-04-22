@@ -1,0 +1,26 @@
+[project]
+name = "gestro-tarea"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "bcrypt>=5.0.0",
+    "email-validator>=2.3.0",
+    "flet>=0.84.0",
+    "mysql-connector-python>=9.6.0",
+    "pydantic[email]>=2.13.3",
+    "python-dotenv>=1.2.2",
+]
+
+[project.scripts]
+#aqui definimos el comando corto.
+#importante: quitamos el prefijo "src. porque definimos src como la raiz.
+app = "main:main"
+
+[tool.uv]
+package = true
+
+#esta seccion es crucial para que python vea el contenido de src como el nivel raiz. 
+[tool.setuptools.package-dir]
+"" = "src"
