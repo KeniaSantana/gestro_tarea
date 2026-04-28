@@ -1,10 +1,23 @@
 import flet as ft
 
 def LoginView(page: ft.Page, auth_controller):
-    email_input = ft.TextField(label="Correo Electronico", width=350, border_radius=10)
-    pass_input = ft.TextField(label="Contraseña", password=True, can_reveal_password=True, width=350, border_radius=10)
+    email_input = ft.TextField(
+        label="Correo Electronico",
+        width=350,
+        border_radius=10
+    )
+
+    pass_input = ft.TextField(
+        label="Contraseña",
+        password=True,
+        can_reveal_password=True,
+        width=350,
+        border_radius=10
+    )
 
     def login_click(e):
+        print("CLICK LOGIN")  # 🔥 DEBUG
+
         if not email_input.value or not pass_input.value:
             page.snack_bar = ft.SnackBar(ft.Text("Por favor, llene todos los campos"))
             page.snack_bar.open = True
@@ -14,16 +27,23 @@ def LoginView(page: ft.Page, auth_controller):
         usuario = email_input.value
         contrasena = pass_input.value
 
+        try:
+            user, msg = auth_controller.login(usuario, contrasena)
 
-        user, msg = auth_controller.login(usuario, contrasena)
+            print("RESULTADO:", user, msg)  # 🔥 DEBUG
 
-        if user:
-            page.session.set("user", user) 
-            page.snack_bar = ft.SnackBar(ft.Text("Inicio de sesión exitoso"))
-            page.snack_bar.open = True
-            page.go("/dashboard")
-        else:
-            page.snack_bar = ft.SnackBar(ft.Text(msg))
+            if user:
+                print("LOGIN CORRECTO → REDIRIGIENDO")
+                page.session.set("user", user)
+                page.go("/dashboard")
+            else:
+                print("LOGIN FALLÓ:", msg)
+                page.snack_bar = ft.SnackBar(ft.Text(msg))
+                page.snack_bar.open = True
+
+        except Exception as ex:
+            print("ERROR:", ex)
+            page.snack_bar = ft.SnackBar(ft.Text(f"Error: {ex}"))
             page.snack_bar.open = True
 
         page.update()
@@ -50,7 +70,11 @@ def LoginView(page: ft.Page, auth_controller):
         route="/",
         vertical_alignment=ft.MainAxisAlignment.CENTER,
         horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-        appbar=ft.AppBar(title=ft.Text("SIGE-Login"), bgcolor="#CAA1F8", color="black"),
+        appbar=ft.AppBar(
+            title=ft.Text("SIGE-Login"),
+            bgcolor="#CAA1F8",
+            color="black"
+        ),
         controls=[
             ft.Column(
                 [
@@ -59,7 +83,10 @@ def LoginView(page: ft.Page, auth_controller):
                     pass_input,
                     login_button,
                     registrar,
-                    ft.TextButton("¿Olvidaste la contraseña?", on_click=lambda _: page.go("/registro"))
+                    ft.TextButton(
+                        "¿Olvidaste la contraseña?",
+                        on_click=lambda _: page.go("/registro")
+                    )
                 ],
                 horizontal_alignment=ft.CrossAxisAlignment.CENTER,
                 spacing=20
