@@ -1,7 +1,7 @@
 import flet as ft
 
 def DashboardView(page, tarea_controller):
-    user = page.session.get("user")
+    user = page.user_data
     lista_tareas = ft.Column(scroll=ft.ScrollMode.ALWAYS, expand=True)
     
     def refresh():
@@ -38,5 +38,5 @@ def DashboardView(page, tarea_controller):
             ft.Divider(),
             ft.Text("Mis tareas pendientes", size=20, weight="bold"),
             lista_tareas
-        ], expand=True, padding=20)
-    ], on_open=lambda _: refresh())
+        ], expand=True)
+    ])
