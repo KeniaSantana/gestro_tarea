@@ -49,7 +49,7 @@ def LoginView(page: ft.Page, auth_controller):
         page.update()
 
     login_button = ft.ElevatedButton(
-        "Entrar",
+        "Iniciar sesion",
         on_click=login_click,
         width=350,
         bgcolor="#F7ADC4",
