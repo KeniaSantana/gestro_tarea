@@ -1,0 +1,17 @@
+README.md
+pyproject.toml
+src/main.py
+src/controllers/TareasController.py
+src/controllers/UserController.py
+src/gestro_tarea.egg-info/PKG-INFO
+src/gestro_tarea.egg-info/SOURCES.txt
+src/gestro_tarea.egg-info/dependency_links.txt
+src/gestro_tarea.egg-info/entry_points.txt
+src/gestro_tarea.egg-info/requires.txt
+src/gestro_tarea.egg-info/top_level.txt
+src/models/TareaModel.py
+src/models/UserModel.py
+src/models/databaseModel.py
+src/models/schemasModel.py
+src/views/LoginView.py
+src/views/dashboard.py

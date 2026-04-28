@@ -13,11 +13,11 @@ class UsuarioModel:
         cursor = conn.cursor()
         try:
             cursor.execute(
-                # 🔥 tabla correcta: usuarios
+                
                 "INSERT INTO usuarios (nombre, apellido, email, password) VALUES (%s, %s, %s, %s)",
                 (
                     usuario_data.nombre,
-                    usuario_data.apellido,   # 🔥 agregado
+                    usuario_data.apellido,   
                     usuario_data.email,
                     hashed_pw.decode('utf-8')
                 )
@@ -34,7 +34,7 @@ class UsuarioModel:
         conn = self.db.get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        # 🔥 tabla correcta + parámetro correcto
+    
         cursor.execute("SELECT * FROM usuarios WHERE email=%s", (email,))
         user = cursor.fetchone()
         conn.close()

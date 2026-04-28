@@ -24,7 +24,7 @@ def start(page: ft.Page):
         elif page.route == "/registro":
             page.views.append(
                 ft.View(
-                    route="/registro",  # ✅ CORRECTO
+                    route="/registro",  
                     controls=[
                         ft.Text("Pantalla de registro"),
                         ft.ElevatedButton("Volver", on_click=lambda _: page.go("/"))
@@ -35,7 +35,7 @@ def start(page: ft.Page):
         else:
             page.views.append(
                 ft.View(
-                    route="/",  # ✅ fallback correcto
+                    route="/", 
                     controls=[ft.Text("Ruta no encontrada")]
                 )
             )

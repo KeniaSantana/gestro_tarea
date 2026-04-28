@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: gestro-tarea
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+Requires-Dist: bcrypt>=5.0.0
+Requires-Dist: email-validator>=2.3.0
+Requires-Dist: flet>=0.84.0
+Requires-Dist: mysql-connector-python>=9.6.0
+Requires-Dist: pydantic[email]>=2.13.3
+Requires-Dist: python-dotenv>=1.2.2

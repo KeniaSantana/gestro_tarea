@@ -16,7 +16,7 @@ def LoginView(page: ft.Page, auth_controller):
     )
 
     def login_click(e):
-        print("CLICK LOGIN")  # 🔥 DEBUG
+        print("CLICK LOGIN") 
 
         if not email_input.value or not pass_input.value:
             page.snack_bar = ft.SnackBar(ft.Text("Por favor, llene todos los campos"))
@@ -30,7 +30,7 @@ def LoginView(page: ft.Page, auth_controller):
         try:
             user, msg = auth_controller.login(usuario, contrasena)
 
-            print("RESULTADO:", user, msg)  # 🔥 DEBUG
+            print("RESULTADO:", user, msg)  
 
             if user:
                 print("LOGIN CORRECTO → REDIRIGIENDO")
