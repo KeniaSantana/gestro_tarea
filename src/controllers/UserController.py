@@ -1,5 +1,5 @@
 from models.UserModel import UsuarioModel
-from models.schemasModel import UsuarioSchema
+from models.schemasModel import UsuarioSchema, UsuarioLogin
 from pydantic import ValidationError
 
 class AuthController:
