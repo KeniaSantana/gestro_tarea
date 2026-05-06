@@ -1,18 +1,19 @@
 from models.UserModel import UsuarioModel
-from models.schemasModel import UsuarioSchema, UsuarioLogin
+from models.schemasModel import UsuarioSchema
 from pydantic import ValidationError
 
 class AuthController:
     def __init__(self):
         self.model = UsuarioModel()
         
-    def registrar_usuario(self, nombre, apellido, email, password, telefono, foto):
+    def registrar_usuario(self, nombre, apellido, email, password, telefono):
         try:
             nuevo_usuario = UsuarioSchema(
                 nombre=nombre,
                 apellido=apellido,
                 email=email,
-                password=password
+                password=password,
+                telefono=telefono
             )
             success = self.model.registrar(nuevo_usuario)
             return success, "Usuario creado correctamente"
