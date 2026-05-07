@@ -15,34 +15,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Volcando estructura de base de datos para usuario
-CREATE DATABASE IF NOT EXISTS `usuario` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `usuario`;
+-- Volcando estructura de base de datos para gestor_tarea
+CREATE DATABASE IF NOT EXISTS `gestor_tarea` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `gestor_tarea`;
 
--- Volcando estructura para tabla usuario.tareas
+-- Volcando estructura para tabla gestor_tarea.tareas
 CREATE TABLE IF NOT EXISTS `tareas` (
   `id_tarea` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuario` int(11) NOT NULL,
   `titulo` varchar(200) NOT NULL,
   `descripcion` text DEFAULT NULL,
   `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
-  `fecha_limite` date DEFAULT NULL,
-  `hora_limite` time DEFAULT NULL,
-  PRIMARY KEY (`id_tarea`)
+  PRIMARY KEY (`id_tarea`),
+  KEY `id_usuario` (`id_usuario`),
+  CONSTRAINT `tareas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- La exportación de datos fue deseleccionada.
 
--- Volcando estructura para tabla usuario.usuarios
+-- Volcando estructura para tabla gestor_tarea.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
+  `email` varchar(150) NOT NULL,
   `password` varchar(255) NOT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
-  `ultimo_acceso` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `ultimo_acceso` timestamp NULL DEFAULT NULL,
   `activo` tinyint(1) DEFAULT 1,
   `foto_perfil` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_usuario`),
