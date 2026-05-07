@@ -13,12 +13,11 @@ class UsuarioModel:
             conn = self.db.get_connection()
             cursor = conn.cursor(dictionary=True)
 
-            # ✔️ tabla correcta: usuarios
             cursor.execute("SELECT id_usuario FROM usuarios WHERE email=%s", (usuario_data.email,))
             if cursor.fetchone():
                 return False
 
-            # ✔️ Encriptar contraseña
+            
             hashed_pw = bcrypt.hashpw(usuario_data.password.encode('utf-8'), bcrypt.gensalt())
 
             cursor = conn.cursor()
@@ -62,7 +61,7 @@ class UsuarioModel:
             if not user:
                 return None
 
-            # ✔️ campo correcto: password
+       
             if bcrypt.checkpw(password.encode('utf-8'), user['password'].encode('utf-8')):
 
                 update_cursor = conn.cursor()
